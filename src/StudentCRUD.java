@@ -9,12 +9,13 @@ public class StudentCRUD {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
+            System.out.println("----------------------------------------");
             System.out.println("\nStudent CRUD System");
-            System.out.println("1. List students");
-            System.out.println("2. Add a student");
+            System.out.println("1. Display all students");
+            System.out.println("2. Add a new student");
             System.out.println("3. Update a student");
             System.out.println("4. Delete a student");
-            System.out.println("5. Quit");
+            System.out.println("5. Exit program");
             System.out.print("Enter your choice: ");
 
             int choice = scanner.nextInt();
@@ -24,7 +25,7 @@ public class StudentCRUD {
                 case 3 -> updateStudent();
                 case 4 -> deleteStudent();
                 case 5 -> {
-                    System.out.println("Exiting the system. Goodbye!");
+                    System.out.println("Exiting the system !!");
                     return;
                 }
                 default -> System.out.println("Invalid choice. Please try again.");
@@ -36,9 +37,10 @@ public class StudentCRUD {
         if (students.isEmpty()) {
             System.out.println("No students to display.");
         } else {
-            System.out.println("ID\tName");
+            System.out.println("ID\tName\tEmail\tCode");
             for (Student student : students) {
-                System.out.println(student.getId() + "\t" + student.getName());
+                System.out.println("----------------------------------------");
+                System.out.println(student.getId() + "\t" + student.getName()+ "\t" + student.getEmail()+ "\t" + student.getCode());
             }
         }
     }
@@ -49,10 +51,17 @@ public class StudentCRUD {
         System.out.print("Enter student name: ");
         String name = scanner.nextLine();
 
-        Student student = new Student(name);
+        System.out.print("Enter student email: ");
+        String email = scanner.nextLine();
+
+        System.out.print("Enter student code: ");
+        String code = scanner.nextLine();
+
+        Student student = new Student(name, email, code);
         students.add(student);
 
         System.out.println("Student added successfully.");
+        System.out.println("----------------------------------------");
     }
 
     private static void updateStudent() {
@@ -68,9 +77,19 @@ public class StudentCRUD {
 
         System.out.print("Enter new student name: ");
         String name = scanner.nextLine();
-        student.setName(name);
 
+        System.out.print("Enter new student email: ");
+        String email = scanner.nextLine();
+
+        System.out.print("Enter new student code: ");
+        String code = scanner.nextLine();
+        student.setName(name);
+        student.setEmail(email);
+        student.setCode(code);
+
+        System.out.println("----------------------------------------");
         System.out.println("Student updated successfully.");
+        System.out.println("----------------------------------------");
     }
 
     private static void deleteStudent() {
@@ -85,8 +104,9 @@ public class StudentCRUD {
         }
 
         students.remove(student);
-
+        System.out.println("----------------------------------------");
         System.out.println("Student deleted successfully.");
+        System.out.println("----------------------------------------");
     }
 
     public static Student getStudentById(int id) {
